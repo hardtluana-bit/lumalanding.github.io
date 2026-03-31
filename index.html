@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milhas para Iniciantes — Luma Agência de Viagens</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1d3d5c;
+      --navy-light: #2a5278;
+      --blue: #378add;
+      --blue-light: #e6f1fb;
+      --green-wa: #25D366;
+      --green-wa-dark: #1ebe5a;
+      --text: #1a1a2e;
+      --text-muted: #6b7280;
+      --border: rgba(0,0,0,0.08);
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --teal: #5dcaa5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-wrap { display: flex; flex-direction: column; }
+    .logo-name {
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+    .logo-tag {
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--navy);
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--navy) 0%, #0f2740 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(55,138,221,0.12);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: rgba(55,138,221,0.07);
+    }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
+
+    .badge {
+      display: inline-block;
+      background: rgba(55,138,221,0.2);
+      color: #85b7eb;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 6px 16px;
+      border-radius: 99px;
+      border: 1px solid rgba(55,138,221,0.3);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--green-wa);
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 15px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .hero-cta:hover { background: var(--green-wa-dark); }
+    .hero-cta:active { transform: scale(0.98); }
+
+    /* ── MAIN CONTENT ── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* ── EBOOK CARD ── */
+    .ebook-card {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2.5rem 0 2rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .ebook-cover {
+      flex-shrink: 0;
+      width: 90px;
+      height: 120px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ebook-cover svg { width: 32px; height: 32px; fill: white; }
+    .ebook-cover-label {
+      font-size: 8px;
+      color: var(--blue-light);
+      letter-spacing: 1px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .ebook-info { color: white; }
+    .ebook-info h3 { font-size: 18px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+    .ebook-info > p { font-size: 13px; color: #b5d4f4; line-height: 1.6; margin-bottom: 10px; }
+    .ebook-info ul { list-style: none; }
+    .ebook-info ul li { font-size: 13px; color: #b5d4f4; padding: 3px 0; }
+    .ebook-info ul li::before { content: "✓ "; color: var(--teal); font-weight: 600; }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-card h2 { font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+    .form-card > p { font-size: 14px; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.5; }
+
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--green-wa);
+      box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+      background: white;
+    }
+
+    .phone-wrapper { display: flex; gap: 8px; }
+    .ddi { width: 72px; flex-shrink: 0; text-align: center; }
+
+    .btn-wa {
+      width: 100%;
+      padding: 15px;
+      background: var(--green-wa);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-wa:hover { background: var(--green-wa-dark); }
+    .btn-wa:active { transform: scale(0.98); }
+
+    .privacy { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 10px; }
+
+    /* ── SUCCESS ── */
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .success-icon { font-size: 48px; margin-bottom: 1rem; }
+    .success-msg h3 { font-size: 22px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .success-msg p { font-size: 15px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── BENEFITS ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .benefit {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .benefit-icon { font-size: 20px; margin-bottom: 8px; }
+    .benefit h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .benefit p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer .f-logo { font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: -0.5px; }
+    footer .f-sub { font-size: 9px; letter-spacing: 4px; color: var(--navy); opacity: 0.6; margin-bottom: 10px; }
+    footer p { font-size: 13px; color: var(--text-muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .ebook-card { flex-direction: column; align-items: flex-start; }
+      .ebook-cover { width: 100%; height: 80px; flex-direction: row; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3.5rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo-wrap">
+      <span class="logo-name">luma</span>
+      <span class="logo-tag">AGÊNCIA DE VIAGENS</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="badge">E-BOOK GRATUITO</span>
+      <h1>Aprenda a viajar mais<br>gastando <em>muito menos</em></h1>
+      <p>Descubra como acumular milhas aéreas do zero, entender as tarifas e emitir passagens de forma inteligente — sem complicação.</p>
+      <a href="#formulario" class="hero-cta">
+        Quero meu e-book gratuito →
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="container">
+
+    <!-- E-BOOK -->
+    <div class="ebook-card">
+      <div class="ebook-cover">
+        <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+        <span class="ebook-cover-label">MILHAS PARA<br>INICIANTES</span>
+      </div>
+      <div class="ebook-info">
+        <h3>Milhas para Iniciantes</h3>
+        <p>O guia completo para começar do zero e viajar mais gastando menos.</p>
+        <ul>
+          <li>Como acumular milhas no dia a dia</li>
+          <li>Programas Smiles, Latam Pass, TudoAzul</li>
+          <li>Como usar a Livelo a seu favor</li>
+          <li>Erros que iniciantes cometem</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="form-card" id="formulario">
+      <div id="form-area">
+        <h2>Quero receber o e-book grátis</h2>
+        <p>Preencha seus dados e receba o material direto no seu WhatsApp.</p>
+
+        <div class="form-group">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" placeholder="Como posso te chamar?" autocomplete="given-name" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Seu WhatsApp</label>
+          <div style="display:flex; gap:8px;">
+            <input type="text" value="+55" readonly style="width:64px; flex-shrink:0; text-align:center; background:#f0f4f8; color:#6b7280; cursor:default;" />
+            <input type="tel" id="telefone" placeholder="(51) 99999-9999" style="flex:1; min-width:0;" autocomplete="tel" />
+          </div>
+        </div>
+
+        <button class="btn-wa" onclick="handleSubmit()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Receber e-book pelo WhatsApp →
+        </button>
+        <p class="privacy">🔒 Seus dados estão seguros. Não enviamos spam.</p>
+      </div>
+
+      <div class="success-msg" id="success-area">
+        <div class="success-icon">🎉</div>
+        <h3>Cadastro realizado!</h3>
+        <p>Clique no botão abaixo para baixar seu e-book agora mesmo.</p>
+        <a href="E-book Milhas para iniciantes.pdf" download style="display:inline-block; margin-top:1.25rem; padding:14px 28px; background:#1d3d5c; color:white; border-radius:8px; font-size:15px; font-weight:600; text-decoration:none;">
+          📥 Baixar e-book gratuito
+        </a>
+        <p style="margin-top:1rem; font-size:13px; color:#6b7280;">Em breve nossa equipe também entrará em contato pelo WhatsApp com ofertas exclusivas.</p>
+      </div>
+    </div>
+
+    <!-- BENEFÍCIOS -->
+    <div class="benefits-grid">
+      <div class="benefit">
+        <div class="benefit-icon">🎯</div>
+        <h4>Conteúdo prático</h4>
+        <p>Linguagem simples, sem jargões. Direto ao ponto.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💳</div>
+        <h4>Cartão certo</h4>
+        <p>Saiba como escolher o cartão ideal para pontuar mais.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">✈️</div>
+        <h4>Passagem com milhas</h4>
+        <p>Entenda quando vale a pena emitir com milhas.</p>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🗺️</div>
+        <h4>Planejamento real</h4>
+        <p>Dicas para transformar pontos em viagens de verdade.</p>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="f-logo">luma</div>
+    <div class="f-sub">AGÊNCIA DE VIAGENS</div>
+    <p>Realizando sonhos, uma viagem de cada vez.</p>
+  </footer>
+
+  <script>
+    function handleSubmit() {
+      const nome = document.getElementById('nome').value.trim();
+      const tel = document.getElementById('telefone').value.trim();
+
+      if (!nome) {
+        alert('Por favor, informe seu nome.');
+        document.getElementById('nome').focus();
+        return;
+      }
+      if (!tel) {
+        alert('Por favor, informe seu WhatsApp.');
+        document.getElementById('telefone').focus();
+        return;
+      }
+
+      // Aqui você pode integrar com uma API ou serviço de captura de leads
+      // Exemplo: enviar para Formspree, Getform, RD Station, etc.
+      // fetch('https://formspree.io/f/SEU_ID', { method: 'POST', body: JSON.stringify({ nome, tel }) })
+
+      document.getElementById('form-area').style.display = 'none';
+      document.getElementById('success-area').style.display = 'block';
+    }
+
+    // Formata o telefone automaticamente
+    document.getElementById('telefone').addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      if (v.length > 7) v = '(' + v.slice(0,2) + ') ' + v.slice(2,7) + '-' + v.slice(7);
+      else if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      else if (v.length > 0) v = '(' + v;
+      e.target.value = v;
+    });
+  </script>
+
+</body>
+</html>
