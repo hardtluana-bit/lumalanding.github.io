@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luma Agência de Viagens</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#f4f4f4;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+.formulario{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+label{
+display:block;
+margin-top:10px;
+font-weight:bold;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:20px;
+border-radius:6px;
+border:1px solid #ddd;
+font-size:16px;
+}
+
+button{
+background:#2c7be5;
+color:white;
+border:none;
+padding:15px;
+width:100%;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a5ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Planeje sua viagem com a Luma ✈️</h1>
+
+<div class="formulario">
+
+<form action="https://api.staticforms.xyz/submit" method="POST">
+
+<input type="hidden" name="accessKey" value="SEU_ACCESS_KEY_AQUI">
+
+<input type="hidden" name="subject" value="Novo lead - Agência Luma">
+
+<input type="hidden" name="redirectTo" value="https://hardtluana-bit.github.io/lumalanding.github.io/">
+
+<label>Nome</label>
+<input type="text" name="name" required>
+
+<label>Email</label>
+<input type="email" name="email" required>
+
+<label>WhatsApp</label>
+<input type="text" name="phone">
+
+<label>Destino desejado</label>
+<input type="text" name="destination">
+
+<label>Quando pretende viajar?</label>
+<input type="text" name="travel_date">
+
+<label>Mensagem</label>
+<textarea name="message" rows="4"></textarea>
+
+<button type="submit">Quero planejar minha viagem</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
